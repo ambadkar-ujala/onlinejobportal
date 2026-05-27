@@ -1,0 +1,106 @@
+{% extends "home.html" %}
+
+{% block content %}
+<style>
+  body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-box label {
+         display: flex;
+         justify-content: left;
+         margin-bottom: 0px;
+         }
+
+        .login-box {
+            width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-box label {
+         display: flex;
+         justify-content: left;
+         margin-bottom: 0px;
+         }
+
+
+  .login-box input[type="date"],
+         .login-box input[type="number"],
+         .login-box input[type="text"],
+         .login-box input[type="email"],
+         .login-box input[type="password"]{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            margin-bottom:20px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+
+        .login-box input[type="checkbox"]{
+            width:auto;
+            margin-bottom:20px;
+        }
+
+         .login-box textarea {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-box button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+<div class="login-box">
+<div style="display: flex; justify-content: center;" ><h2> Experience</h2></div><br>
+<div  style="display: flex; justify-content: center;">
+
+
+
+
+            <form method="POST" action="/student/experience/">
+                {% csrf_token %}
+            <label>Job Title:</label>    <input type="text" name="job_title" placeholder="Job Title">
+            <label>Company Name:</label>    <input type="text" name="company_name" placeholder="Company Name">
+            <div class="form-row">
+            <div class="form-group col-sm-6" >
+                <label>Start Date:</label>
+                <input type="date" name="startdate" ></div>
+            <div class="form-group col-sm-6" >
+                <label>End Date:</label>
+                <input type="date" name="enddate" >
+            </div>
+        </div>
+            <label>Salary:</label>    <input type="number" name="salary" >
+            <label>Job Profile:</label>    <textarea type="text" name="job_profile" style="width:750px;"  ></textarea>
+
+
+                <button type="submit">Save Experience</button>
+            </form>
+</div>
+</div>
+{% endblock content %}

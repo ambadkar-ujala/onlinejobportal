@@ -1,0 +1,122 @@
+{% extends "home.html" %}
+
+{% block content %}
+<style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-box label {
+         display: flex;
+         justify-content: left;
+         margin-bottom: 0px;
+         }
+
+        .login-box {
+            width: 350px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-box button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color:red; display: flex; justify-content: center; align-items: center; " class="{{ message.tags }}">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
+
+<div class="login-box">
+<div style="display: flex; justify-content: center;" ><h2>Student Login</h2></div><br>
+<div  style="display: flex; justify-content: center;">
+
+<script>
+
+
+function togglePassword() {
+
+    var password = document.getElementById("id_password");
+    var eye = document.getElementById("eye");
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        eye.classList.remove("fa-eye");
+        eye.classList.add("fa-eye-slash");
+
+    }
+    else {
+
+        password.type = "password";
+
+        eye.classList.remove("fa-eye-slash");
+        eye.classList.add("fa-eye");
+    }
+}
+
+</script>
+    <form method="POST">
+        {% csrf_token %}
+         {{ form.username.label }}
+    {{ form.username }}
+
+    <br><br>
+
+    {{ form.password.label }}
+        <div style="position:relative;width:300px;">
+
+        {{ form.password }}
+
+        <i class="fa-solid fa-eye"
+           id="eye"
+           onclick="togglePassword()"
+           style="
+           position:absolute;
+           right:10px;
+           top:50%;
+           transform:translateY(-50%);
+           cursor:pointer;">
+        </i>
+
+    </div>
+
+    <button type="submit">Login</button><br><br>
+<a href="/forgot_password/">Forgot Password</a>
+    </form>
+</div>
+</div>
+
+{% endblock content %}

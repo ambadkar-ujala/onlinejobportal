@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+          <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Job Details</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+.login-box {
+            width: 700px;
+            margin-left: 300px ;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+
+        }
+
+
+    </style>
+
+</head>
+
+<body >
+{% if jobdetails %}
+
+<div style="background-color:lightblue; ">
+
+<div  style=" display: flex;justify-content: space-between;  align-items: center;">
+
+<h2 style="margin-left:250px;padding:20px 0px 0px 0px;">Company Profile</h2>
+    {% if user.is_authenticated %}
+
+    {% if msg %}
+        <a href="/ehome/" style="margin-right:550px;padding:20px 0px 0px 0px;">Home</a>
+    {% else %}
+       <a href="/" style="margin-right:550px;padding:20px 0px 0px 0px;">Home</a>
+    {% endif %}
+     {% else %}
+    <a href="/" style="margin-right:550px;padding:20px 0px 0px 0px;">Home</a>
+ {% endif %}
+
+</div>
+
+<div class="login-box">
+<b><p>{{jobdetails.job.title}}</p></b>
+<p><i class="fas fa-building"></i> {{jobdetails.job.company}} Pvt. Ltd.</p>
+    <p><i class="fas fa-briefcase"></i>  {{jobdetails.job.experience}}   <i class="fa-regular fa-money-bill-1" style="margin-left:20px"></i>  {{jobdetails.job.salary}}</p>
+     <p></p>
+     <span><i class="fa-solid fa-location-dot"></i>{{jobdetails.job.location}}</span>
+    {% if user.is_authenticated %}
+    {% if not msg %}
+    <span style="margin-left:400px;">
+    <span style="background-color:Gainsboro;  border: 2px solid black;  border-radius: 15px;margin-right:20px;border-color:Gainsboro;padding: 5px 10px 10px 10px;">
+    <a href="/apply/{{jobdetails.job.id}}/" >Apply</a>  </span>
+    <span style="background-color:Gainsboro; border: 2px solid black;  border-radius: 15px;border-color:Gainsboro; padding: 5px 10px 10px 10px;">
+     <a href="/save/{{jobdetails.job.id}}/" >Save</a>  </span><br>
+</span>
+     {% endif %}
+     {% else %}
+    <span style="margin-left:400px;">
+    <span style="background-color:Gainsboro;  border: 2px solid black;  border-radius: 15px;margin-right:20px;border-color:Gainsboro;padding: 5px 10px 10px 10px;">
+    <a href="/student/login/" >Login to Apply</a>   </span>
+
+</span>
+
+ {% endif %}
+
+
+</div>
+ <h2 style="margin-left:250px;padding:20px 0px 0px 0px;">Job Description</h2>
+<div class="login-box">
+<p style="text-align: justify;">{{jobdetails.job.description}}</p>
+
+</div>
+
+<h2 style="margin-left:250px;padding:20px 0px 0px 0px;">Job Requirements</h2>
+<div class="login-box">
+<p style="text-align: justify;">{{jobdetails.job_requirements}}</p>
+
+</div>
+
+<h2 style="margin-left:250px;padding:20px 0px 0px 0px;">Job Responsibilities</h2>
+<div class="login-box">
+   <p style="text-align: justify;">{{jobdetails.job_responsibilities}}</p>
+</div>
+<h2 style="margin-left:250px;padding:20px 0px 0px 0px;">Company Profile</h2>
+<div class="login-box">
+    <p><b>Registration No.:</b> {{jobdetails.registration_no}}</p>
+    <p style="text-align: justify;"><b>Company Info.:</b> {{jobdetails.company_info}}</p>
+
+<p><b>No. of Employees:</b>  {{jobdetails.get_no_of_employees_display}}</p>
+<p><b>Company Address:</b> {{jobdetails.company_address}} </p>
+
+</div><br>
+
+</div>
+{% else %}
+    <p>No Jobs Details Available</p>
+{% if user.is_authenticated %}
+
+    {% if msg %}
+        <a href="/ehome/" style="margin-right:550px;padding:20px 0px 0px 0px;">Home</a>
+    {% else %}
+       <a href="/" style="margin-right:550px;padding:20px 0px 0px 0px;">Home</a>
+    {% endif %}
+     {% else %}
+    <a href="/" style="margin-right:550px;padding:20px 0px 0px 0px;">Home</a>
+ {% endif %}
+    {% endif %}
+</body>
+</html>

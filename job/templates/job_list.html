@@ -1,0 +1,41 @@
+{% extends "ehome.html" %}
+
+{% block content %}
+
+<div style="background-color: lightblue;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width:210vh;
+            height: 100%;
+            padding:10px 10px 10px 10px" xmlns="http://www.w3.org/1999/html">
+
+<h1>Available Jobs</h1>
+<hr>
+{% for job in job_list %}
+    <div class="container">
+        <div class="row">
+<!--            <div style="width: 100%; height: 300px; border: 1px solid black;  border-radius: 15px; padding: 10px 30px 30px 30px;">-->
+                <div class="col-sm-8">
+
+        <a href="/job_details/{{job.id}}/"><h2>{{forloop.counter}}.  {{ job.title }}  | {{job.experience}} | {{job.skills}}</h2></a>
+        <b><p>{{ job.company }} Pvt. Ltd. - {{ job.location }}</p></b>
+
+        <p>{{ job.description }}</p>
+                <a href="/edit_job/{{ job.id }}/" >Edit</a> |
+        <a href="/delete_job/{{ job.id }}/">Delete</a>
+        </div>
+
+                <div class="col-sm-4">
+<img src="{{job.company_logo.url}}" style="width:200px; height:200px;" alt="company_logo" >
+                </div>
+<!--</div>-->
+
+    </div>
+        </div>
+    <hr>
+        {% endfor %}
+
+</div>
+
+{% endblock content %}

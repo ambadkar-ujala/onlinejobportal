@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+          <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Job Details</title>
+<style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-box label {
+         display: flex;
+         justify-content: left;
+         margin-bottom: 0px;
+         }
+
+        .login-box {
+            width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-box label {
+         display: flex;
+         justify-content: left;
+         margin-bottom: 0px;
+         }
+
+       .login-box input[type="text"],
+        .login-box input[type="email"],
+        .login-box input[type="password"]{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            margin-bottom:20px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        .login-box input[type="checkbox"]{
+            width:auto;
+            margin-bottom:20px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-box button:hover {
+            background-color: #0056b3;
+        }
+
+ .sidebar{
+            width:250px;
+            height:100vh;
+            background:#222;
+            position:fixed;
+            top:0;
+            left:0;
+            padding-top:20px;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:15px 25px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+         .sidebar select{
+            border:black;
+            width:230px;
+            display:block;
+            color:white;
+            background:black;
+            text-decoration:none;
+            padding:15px 25px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .sidebar button{
+            border:black;
+            width:230px;
+            display:block;
+            color:white;
+            background:black;
+            text-decoration:none;
+            padding:15px 25px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+
+        .sidebar a:hover{
+            background:#04AA6D;
+            padding-left:35px;
+        }
+
+        .content{
+            margin-left:270px;
+            padding:20px;
+        }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    padding: 10px 15px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-content a:hover {
+    background: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+    </style>
+   </head>
+
+<body>
+
+<div style="background-color:lightblue;">
+    <!-- Overlay -->
+
+<div class="sidebar">
+        <a href="/">Home</a>
+    <div class="dropdown">
+    <button class="dropbtn">Edit Education ▼</button>
+
+    <div class="dropdown-content">
+        <a href="/edit_education/">10th</a>
+        <a href="/edit_education12/">12th</a>
+        <a href="/edit_educationgr/">Graduation</a>
+        <a href="/edit_educationpg/">Post Graduation</a>
+    </div>
+</div>
+
+
+
+        <a style="color:white;" href="/edit_exp/">Edit Work Experience</a>
+        <a style="color:white;" href="/change_image/">Change Image</a>
+        <a style="color:white;" href="/update_resume/">Update Resume</a>
+</div>
+
+<div style="padding:30px">
+<div class="login-box">
+<div style="display: flex; justify-content: center;" ><h2>Update Student Profile</h2></div><br>
+<div  style="display: flex; justify-content: center;">
+
+
+  <form class="container"  method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+       <span class="form-group col-sm-6">
+                   <img src="{{stud.image.url}}" style="width:80px; height:80px;border-radius:50%;object-fit:cover;  border:1px solid black;margin-bottom:20px;" value="{{stud.image.url}}" alt="image" >
+
+                </span>
+        <div class="form-row">
+            <div class="form-group col-sm-6" >
+                <label>First Name</label>
+               <input type="text" name="firstname" value="{{stud.firstname}}" ></div>
+            <div class="form-group col-sm-6" >
+                <label>Last Name:</label>
+                <input type="text" name="lastname" value="{{stud.lastname}}" >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-sm-6" >
+                <label>Email Id</label>
+               <input type="email" name="email_id" value="{{stud.email_id}}" ></div>
+            <div class="form-group col-sm-6" >
+                  <label>Contact Number</label>
+        <input type="text" name="contact" value="{{stud.contact}}"  >
+            </div>
+        </div>
+
+         <div class="form-row">
+                    <div class="form-group col-sm-6" >
+             <label>Skills</label>
+                        <input type="text" name="skills" value="{{stud.skills}}" ></div>
+
+              <div class="form-group col-sm-6" >
+              <label>Location</label>
+                  <input type="text" name="location" value="{{stud.location}}"  ></div>
+         </div>
+
+
+      <div><label>Language</label>
+          <span  style="margin-right:50px;">
+              <input type="checkbox"  name="language" value="English"
+                     {% if "English" in stud.language %} checked {% endif %} > English
+          </span>
+
+          <span  style="margin-right:50px;">
+          <input type="checkbox" name="language" value="Hindi"
+                 {% if "Hindi" in stud.language %}checked{% endif %}> Hindi
+          </span>
+
+          <span  style="margin-right:50px;">
+          <input type="checkbox" name="language" value="Marathi"
+                 {% if "Marathi" in stud.language %}checked{% endif %}> Marathi
+          </span>
+
+      </div>
+
+      <label>Resume</label>
+      <div class="form-row" style=" width: 710px;
+            padding: 10px;
+            margin: 10px 0;
+            margin-bottom:20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;">
+          <div class="col-sm-9" ><a href="{{stud.resume.url}}" value="{{stud.resume.url}}"> {{stud.resumename}}</a></div>
+      </div>
+
+
+      <div class="row" style="margin-left: 10px">
+           <label>Gender:</label>
+ <span  style="margin-right:50px;margin-left:100px;">
+     <input type="radio"  name="gender" value="Male"  {% if stud.gender == "Male" %}checked{% endif %}> Male </span>
+
+ <span  style="margin-right:50px;">
+     <input type="radio"  name="gender" value="Female" {% if stud.gender == "Female" %}checked{% endif %}> Female </span>
+
+
+      </div>
+      <br>
+
+         <button type="submit">Update Profile</button>
+    </form>
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

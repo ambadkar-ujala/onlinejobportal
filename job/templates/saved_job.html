@@ -1,0 +1,29 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+<div style="background-color: lightblue;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width:210vh;
+            height: 100%;
+            padding:10px 10px 10px 10px">
+
+<h1>Saved Jobs</h1>
+
+{% for i in saved_job %}
+    <div style="width: 100%; height: 300px; border: 1px solid black;  border-radius: 15px; padding: 30px 30px 30px 30px;">
+        <a href="/job_details/"> <h2>{{forloop.counter}}. {{ i.job.title }}  | {{i.job.experience}} | {{i.job.skills}}</h2></a>
+        <p>{{ i.job.company }} - {{ i.job.location }}</p>
+        <p>{{ i.job.description }}</p><br>
+        <a href="/apply/{{ i.job.id }}/"><i class="fa-solid fa-paper-plane ml-5 mr-1"></i>Apply</a>
+
+    </div>
+{% empty %}
+    <p>No jobs found</p>
+{% endfor %}
+
+</div>
+
+{% endblock content %}

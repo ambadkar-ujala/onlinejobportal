@@ -1,0 +1,89 @@
+<{% extends "home.html" %}
+
+{% block content %}
+<style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-box {
+            width: 350px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-box button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color:red; display: flex; justify-content: center; align-items: center; " class="{{ message.tags }}">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
+<div class="login-box">
+<div style="display: flex; justify-content: center;" ><h2>Student Registeration</h2></div><br>
+<div style="display: flex; justify-content: center;">
+
+<form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+     <div style="position:relative;width:300px;">
+        <input type="password" id="password" name="password" placeholder="Password" style="width:100%;padding:10px;padding-right:40px;">
+        <i class="fa-solid fa-eye" id="eye" onclick="togglePassword('password','eye')" style="position:absolute; right:10px; top:50%; transform:translateY(-50%);cursor:pointer;"></i>
+    </div>
+<script>
+function togglePassword(a,b) {
+    var password = document.getElementById(a);
+    var eye = document.getElementById(b);
+
+    if (password.type === "password") {
+        password.type = "text";
+        eye.classList.remove("fa-eye");
+        eye.classList.add("fa-eye-slash");
+    }
+    else {
+        password.type = "password";
+        eye.classList.remove("fa-eye-slash");
+        eye.classList.add("fa-eye");
+    }
+}
+</script>
+
+     <div style="position:relative;width:300px;">
+        <input type="password" id="password1" name="confirmpassword" placeholder="Confirm Password" style="width:100%;padding:10px;padding-right:40px;">
+        <i class="fa-solid fa-eye" id="eye1" onclick="togglePassword('password1','eye1')" style="position:absolute; right:10px; top:50%; transform:translateY(-50%);cursor:pointer;"></i>
+    </div>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+</div>
+{% endblock content %}

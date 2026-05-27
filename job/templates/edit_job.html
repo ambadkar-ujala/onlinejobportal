@@ -1,0 +1,141 @@
+{% extends "ehome.html" %}
+
+{% block content %}
+<style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-box {
+            width: 1000px;
+            margin: 50px auto;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+
+        }
+
+         .login-box label {
+         display: flex;
+         justify-content: left;
+         margin-bottom: 0px;
+         }
+
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+         .login-box textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-box button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+<div class="login-box">
+<div style="display: flex; justify-content: center;" ><h2>EDIT JOB
+</h2></div><br>
+<div>
+
+    <form class="container" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label >Job Title: </label><input type="text" name="title" value="{{job.title}}" required>
+
+        <div class="form-row">
+            <div class="form-group col-sm-6" >
+                <label>Job Location:</label>
+                <input type="text" name="location" value="{{job.location}}" required></div>
+            <div class="form-group col-sm-6" >
+                <label>Company:</label>
+                <input type="text" name="company" value="{{job.company}}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-sm-6" >
+                <label>Start Date:</label>
+                <input type="date" name="startdate" value="{{job.start_date|date:'Y-m-d'}}" required></div>
+            <div class="form-group col-sm-6" >
+                <label>End Date:</label>
+                <input type="date" name="enddate" value="{{job.end_date|date:'Y-m-d'}}" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+                <div class="col-md-6" >
+                    <label>Experience:</label>
+                    <input type="text"  name="experience" value="{{job.experience}}" >
+                </div>
+                <div class="form-group col-md-6" >
+                     <label>Salary:</label>
+                    <input type="text"  name="salary" value="{{job.salary}}" >
+                </div>
+        </div>
+        <div class="form-row">
+                <div class="col-md-6" >
+                    <label>Skills:</label>
+                    <input type="text"  name="skills"  placeholder="Add Maximum 3 skills" value="{{job.skills}}" required>
+                </div>
+                <div class="form-group col-md-6" >
+                     <label>Company Logo:</label>
+                     <img src="{{job.company_logo.url}}" style="width:80px; height:80px;border-radius:50%;object-fit:cover;  border:1px solid black;margin-bottom:20px;" value="{{job.company_logo.url}}" alt="image" >
+
+                </div>
+        </div>
+<label>Job  Description:</label>  <textarea type="text" name="description"  placeholder=" Max 250 charecters" value="{{job.description}}" required>{{job.description}}</textarea><br>
+        <label>  Job Requirements:</label>  <textarea type="text" name="req"  placeholder=" Max 250 charecters" value="{{jobdetails.job_requirements}}" required>{{jobdetails.job_requirements}}</textarea><br>
+        <label>  Job Resposibilities:</label>  <textarea type="text" name="res"  placeholder=" Max 250 charecters" value="{{jobdetails.job_responsibilities}}" required>{{jobdetails.job_responsibilities}}</textarea><br>
+
+        <label for="no_of_employees">No of Employees:</label>
+                <select name="no_of_employees" id="no_of_employees" >
+                  <option value="">--Please choose an option--</option>
+                  <option value="1">1-50</option>
+                  <option value="2">51-200</option>
+                  <option value="3">201-500</option>
+                  <option value="4">More than 500</option>
+                </select><br><br>
+        <label >Registration No.: </label><input type="text" name="reg" value="{{jobdetails.registration_no}}" required></input>
+         <label >Company Info: </label><textarea  name="info" value="{{jobdetails.company_info}}" required>{{jobdetails.company_info}}</textarea>
+         <label >Company Address: </label><textarea  name="address" value="{{jobdetails.company_address}}" required>{{jobdetails.company_address}}</textarea>
+            <button type="submit">Post Job</button>
+    </form>
+
+</div>
+</div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends "ehome.html" %}
+
+{% block content %}
+
+<div style="background-color: lightblue;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width:210vh;
+            height: 100%;
+            padding:10px 10px 10px 10px">
+
+
+
+{% for app in app_obj %}
+    <div style="width: 100%; height: 300px; border: 1px solid black;  border-radius: 15px; padding: 30px 30px 30px 30px;">
+       <h2>{{ app.job.title }} </h2> <!-- | {{app.job.experience}} | {{app.job.skills}}-->
+        <p><b>Name :</b> {{ app.student.firstname}} {{ app.student.lastname }}</p>
+        <p><b>Email Id:</b> {{ app.student.email_id }}</p>
+        <p><b>Mobile No.:</b> {{ app.student.contact }}</p>
+        <p><b>Apply Date:</b> {{ app.applied_at }}</p>
+        <a href="{{app.resume.url}}" >Download Resume</a> |
+<!--        <a href="/delete/{{ job.id }}/">Delete</a>-->
+    </div>
+
+{% endfor %}
+
+</div>
+
+{% endblock content %}
